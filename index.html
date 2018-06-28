@@ -1,0 +1,671 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/sky.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <style type="text/css">
+        .mu {
+            text-transform: lowercase !important;
+            font-family: "HelveticaNeue-Light" !important;
+        }
+    </style>
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2 class="fragment strike">Le Domain Driven Design</h2>
+            <h2>à la rescousse des architectures Microservices ?</h2>
+            <p>
+                <a href="https://twitter.com/JeromeAvoustin">@JeromeAvoustin</a>
+            </p>
+        </section>
+        <section>
+            <h2>Quelques principes de design</h2>
+            <h2>à la rescousse des architectures Microservices ?</h2>
+            <p>
+                <a href="https://twitter.com/JeromeAvoustin">@JeromeAvoustin</a>
+            </p>
+        </section>
+        <section>
+            <section>
+                <img width="800" src="img/saagie.png" alt="saagie"/>
+            </section>
+            <section>
+                <img width="800" src="img/stickers.png" alt="stickers saagie"/>
+            </section>
+            <section>
+                <img width="800" src="img/rehia.png" alt="rehia"/>
+            </section>
+            <section>
+                <img width="800" src="img/jakku-workin.jpg" alt="jakku workin"/>
+                <p>#jakku-workin sur le Slack communautaire</p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Les Microservices</h2>
+                <p>
+                    Style d'architecture qui structure un système autour de services légers et faiblement couplés
+                </p>
+            </section>
+            <section>
+                <h2>Caractéristiques</h2>
+                <ul>
+                    <li>Responsabilité business unique</li>
+                    <li>Forte cohésion</li>
+                    <li>Couplage faible</li>
+                    <li>Autonomes</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Quels avantages ?</h2>
+                <ul>
+                    <li>Système plus modulaire</li>
+                    <li>Facilitent le scaling</li>
+                    <li>Solutions adaptées à chaque situation</li>
+                    <li>Équipes autonomes</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Les challenges</h2>
+                <ul>
+                    <li>Les frontières d'un µS</li>
+                    <li>La communication</li>
+                    <li style="text-decoration: line-through">La gestion des transactions</li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <h2>Les frontières d'un microservice</h2>
+        </section>
+        <section>
+            <section>
+                <img width="450" src="img/layered-ms.png" alt="découpage technique">
+                <h2>Découpage technique</h2>
+            </section>
+            <section>
+                <h3>Manque de <strong>cohésion</strong></h3>
+            </section>
+            <section>
+                <h3>Un changement dans <strong>un</strong> <span class="mu">µ</span>S</h3>
+                <h3>nécessite des modifications dans <strong>d'autres</strong> <span class="mu">µ</span>S</h3>
+            </section>
+            <section>
+                <h3>Déployer <strong>un</strong> <span class="mu">µ</span>S</h3>
+                <h3>nécessite le déploiement <strong>d'autres</strong> <span class="mu">µ</span>S</h3>
+            </section>
+            <section>
+                <h3>Le même développeur intervient sur <strong>plusieurs</strong> <span class="mu">µ</span>S</h3>
+            </section>
+            <section>
+                <h3>aboutit à un</h3>
+                <h3><strong>monolithe distribué</strong></h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <img width="600" src="img/entity-services.png" alt="entity services">
+                <h2>Services par entité</h2>
+            </section>
+            <section>
+                <h3>Héritage du SOA</h3>
+            </section>
+            <section>
+                <h3>Couplage sémantique</h3>
+                <p>
+                    Besoin de connaître les versions des services avec lesquelles on est compatible
+                </p>
+            </section>
+            <section>
+                <h3>Crée des bottlenecks</h3>
+                <img width="600" src="img/entity-services-load.png" alt="entity services under heavy load">
+            </section>
+            <section>
+                <h3>Gestion complexe des transactions</h3>
+                <p>en two phases commit</p>
+            </section>
+            <section>
+                <h3>La disponibilité du système dépend de la quasi totalité des <span class="mu">µ</span>S</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>Loi de conway</h3>
+                <img width="700" src="img/conways-law.jpg" alt="loi de conway">
+            </section>
+        </section>
+        <!--<section data-markdown="slides/DDD.md"-->
+        <!--data-separator="^\n\n\n"-->
+        <!--data-separator-vertical="^\n\n"-->
+        <!--data-separator-notes="^Note:"-->
+        <!--data-charset="utf-8">-->
+        <!--</section>-->
+        <section>
+            <section>
+                <h3>Comment assurer une meilleure cohesion de chaque service ?</h3>
+            </section>
+            <section>
+                <h3>Un <span class="mu">µ</span>S est responsable d'un ensemble de comportements</h3>
+            </section>
+            <section>
+                <h3>Besoin d'un modèle <strong>adapté</strong></h3>
+                <p>Aussi simple que possible</p>
+            </section>
+            <section data-background="img/think.gif">
+                <h3 style="color: white">Comment construire ce modèle ?</h3>
+            </section>
+            <section>
+                <h3>Utiliser le langage des experts du domaine</h3>
+            </section>
+            <section>
+                <img src="slides/img/ubiquitous-language.jpg" alt="ubiquitous language" height="500"/>
+            </section>
+            <section>
+                <img src="slides/img/one-model.jpg" alt="one model to rule them all" height="500"/>
+            </section>
+            <section>
+                <img src="slides/img/atlas.png" alt="atlas" height="500"/>
+            </section>
+            <section>
+                <img src="slides/img/map-flag.png" alt="map flags" height="500"/>
+            </section>
+            <section>
+                <img src="slides/img/map-risk.png" alt="map risk" height="500"/>
+            </section>
+            <section>
+                <img src="slides/img/map-population.png" alt="map population" height="500"/>
+            </section>
+            <section>
+                <img src="slides/img/map-hat.png" alt="map hats" height="500"/>
+            </section>
+            <section>
+                <img src="slides/img/reality.jpg" alt="Reality vs projections" height="500"/>
+            </section>
+            <section>
+                <h3>Les Bounded Contexts</h3>
+                <img src="slides/img/bounded-contexts.jpg" alt="Bounded Contexts" height="400"/>
+            </section>
+            <section>
+                <h3>Bornes d'un bounded context</h3>
+                <h3>=</h3>
+                <h3>Bornes d'un <span class="mu">µ</span>S</h3>
+            </section>
+            <section>
+                <img width="800" src="img/mathias.png" alt="µS == BC not possible">
+            </section>
+            <section>
+                <img width="700" src="img/bc-ms.png" alt="BC and µS">
+            </section>
+            <section>
+                <h3>Bonne piste, mais pas systématique</h3>
+            </section>
+            <section data-background="img/think.gif">
+                <h3 style="color: white">Comment faire ?</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>Agrégats</h3>
+                <img width="700" src="img/aggregates.png" alt="aggregates">
+            </section>
+            <section>
+                <h3>Cluster d'objets</h3>
+                <h3>composé d'entités</h3>
+                <h3>et de value objects</h3>
+            </section>
+            <section>
+                <h3>Expression du domaine métier</h3>
+                <p>porte le modèle</p>
+            </section>
+            <section>
+                <h3>expose une collection de traitements métiers</h3>
+                <p>à travers la racine de l'agrégat</p>
+            </section>
+            <section>
+                <h3>contrôle les invariants</h3>
+            </section>
+            <section>
+                <h3>peut lever des événements</h3>
+                <p>et l'exposer au reste du système</p>
+            </section>
+            <section>
+                <h3>unité transactionnelle</h3>
+                <p>assure la consistance de l'ensemble</p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>Bornes d'un agrégat</h3>
+                <h3>=</h3>
+                <h3>Bornes d'un <span class="mu">µ</span>S</h3>
+            </section>
+            <section>
+                <img width="600" src="img/mathias2.png" alt="µS == agrégat possible">
+            </section>
+            <section>
+                <img width="700" src="img/bc-ms-api.jpeg" alt="BC and µS">
+            </section>
+        </section>
+        <section>
+            <h2>La communication</h2>
+        </section>
+        <section>
+            <section>
+                <h3>Modes de communication</h3>
+            </section>
+            <section>
+                <h3>Shared database</h3>
+            </section>
+            <section>
+                <h3>RPC / synchrone</h3>
+            </section>
+            <section>
+                <h3>Messaging / asynchrone</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>Shared database</h3>
+            </section>
+            <section>
+                <h3>Couplage au build</h3>
+            </section>
+            <section>
+                <h3>Couplage au deploy</h3>
+            </section>
+            <section>
+                <h3>Couplage au runtime</h3>
+            </section>
+            <section>
+                <blockquote>Shared mutable state is the root of all evil</blockquote>
+                <p>Henrik Eichenhardt</p>
+                <p>
+                    <a href="http://henrikeichenhardt.blogspot.fr/2013/06/why-shared-mutable-state-is-root-of-all.html"
+                       target="_blank">
+                        <small>
+                            http://henrikeichenhardt.blogspot.fr/2013/06/why-shared-mutable-state-is-root-of-all.html
+                        </small>
+                    </a>
+                </p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>Communications synchrones</h3>
+            </section>
+            <section>
+                <h3>solution la plus maitrisée</h3>
+            </section>
+            <section>
+                <h3>reproduit les mécanismes de communication des monolithes...</h3>
+            </section>
+            <section>
+                <h3>...sur un réseau non fiable</h3>
+            </section>
+            <section>
+                <h3>augmente le niveau de dépendance aux autres services</h3>
+            </section>
+            <section>
+                <h3>perte d'autonomie</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>Messaging</h3>
+            </section>
+            <section>
+                <h3>découple les services par inversion de contrôle</h3>
+            </section>
+            <section>
+                <h3>redonne de l'autonomie aux services</h3>
+            </section>
+            <section>
+                <h3>rend les services plus tolérants à l'erreur</h3>
+            </section>
+            <section>
+                <h3>change le modèle de consistance</h3>
+            </section>
+            <section>
+                <h3 style="text-decoration: line-through;">ACID</h3>
+                <h3>Eventual Consistency</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>Les Domain Events</h3>
+            </section>
+            <section>
+                <h3>Les événements existent partout dans le domaine</h3>
+            </section>
+            <!--<section>-->
+                <!--<h3>Peuvent dépendre du temps</h3>-->
+            <!--</section>-->
+            <section>
+                <h3>Moyen de communiquer</h3>
+            </section>
+            <section>
+                <h3>Permettent de faire du contrôle de cohérence</h3>
+            </section>
+            <section>
+                <h3>Prennent la forme de value objects...</h3>
+            </section>
+            <section>
+                <h3>...communiqués au monde extérieur</h3>
+            </section>
+            <section>
+                <h3>exemples</h3>
+                <p><strong>ProductPurchased</strong></p>
+                <p><strong>OrderShipped</strong></p>
+                <p><strong>MoneyWithdrawn</strong></p>
+                <p><strong>TransferCompleted</strong></p>
+            </section>
+            <section>
+                <h3>Event driven architecture</h3>
+                <p></p>
+                <blockquote>
+                    Choregraphy over orchestration
+                </blockquote>
+            </section>
+            <section>
+                <h3>Event Storming</h3>
+                <img width="600" src="img/event-storming.png" alt="event storming">
+            </section>
+            <section>
+                <h3>Emergence...</h3>
+                <ul>
+                    <li>Ubiquitous Language</li>
+                    <li>Bounded Contexts</li>
+                    <li>Chorégraphie</li>
+                </ul>
+            </section>
+            <section>
+                <img width="700" src="img/event-storming-implem.jpg" alt="event storming">
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>Contrats</h3>
+            </section>
+            <section>
+                <h3>Quelles sont les dépendances entre <span class="mu">µ</span>S ?</h3>
+            </section>
+            <section>
+                <h3>Quel service impose aux autres son modèle ?</h3>
+            </section>
+            <section>
+                <h3>Comment assure-t-on la compatibilité entre services ?</h3>
+            </section>
+            <section>
+                <h3>Comment coordonne-t-on le développement et le déploiement des services ?</h3>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>Context mapping</h3>
+                <img width="700" src="img/context-mapping.png" alt="context mapping">
+            </section>
+            <section>
+                <h3>pas un diagramme de flux</h3>
+            </section>
+            <section>
+                <h3>Diagramme d'influence</h3>
+                <p>upstream et downstream</p>
+                <img width="600" src="img/river.jpg" alt="upstream - downstream">
+            </section>
+            <section>
+                <img width="800" src="img/context-map-empty.png" alt="context mapping">
+            </section>
+            <section>
+                <img width="800" src="img/upstream-downstream.png" alt="context mapping">
+            </section>
+            <section>
+                <h3>Types de relation</h3>
+                <ul>
+                    <li>Partnership</li>
+                    <li>Customer - Supplier</li>
+                    <li>Conformist</li>
+                    <li>Anti Corruption Layer</li>
+                    <li>Shared Kernel</li>
+                    <li>...</li>
+                </ul>
+            </section>
+            <section>
+                <img width="800" src="img/context-mapping-patterns.png" alt="context mapping">
+            </section>
+            <section>
+                <h3>Le pattern utilisé influence...</h3>
+            </section>
+            <section>
+                <h3>...les contrats d'interface</h3>
+                <p><i>Commandes</i> définit ses attentes à <i>Catalogue Produits</i></p>
+            </section>
+            <section>
+                <h3>...la synchronisation des backlogs</h3>
+                <p>Les besoins de <i>Commandes</i> impacte le backlog de <i>Catalogue Produits</i></p>
+            </section>
+            <section>
+                <h3>...le mode de communication des équipes</h3>
+            </section>
+            <section>
+                <h3>...la synchronisation des déploiements</h3>
+                <p><i>Commandes</i> peut être déployé indépendamment de <i>Clients</i></p>
+            </section>
+            <section>
+                <h3>décrit la situation actuelle</h3>
+            </section>
+            <section>
+                <h3>documente la façon dont les contextes influent les uns sur les autres</h3>
+            </section>
+            <section>
+                <h3>documente la façon dont les <span class="mu">µ</span>S doivent communiquer</h3>
+            </section>
+            <section>
+                <a href="https://www.infoq.com/presentations/ddd-microservices-2016">
+                    <img width="700" src="img/eric-evans-ms-ddd.png" alt="eric evans - at last some boundaries">
+                    https://www.infoq.com/presentations/ddd-microservices-2016
+                </a>
+            </section>
+        </section>
+        <!--<section>-->
+        <!--<h2>La gestion des transactions</h2>-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<section>-->
+        <!--<h3>Théorème de CAP</h3>-->
+        <!--<img width="500" src="img/cap.png" alt="cap theorem">-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<h3>Consistency - Availability</h3>-->
+        <!--<p>ACID</p>-->
+        <!--<p>SGBD traditionnels (Oracle, Sql Server, MySQL, Postgres...)</p>-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<h3>modèle plus viable dans un contexte de <span class="mu">µ</span>S</h3>-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<h3>Consistency - Partition tolerance</h3>-->
+        <!--<p>Process managers</p>-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<h3>Oublions le Two Phases Commit...</h3>-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<h3>Sagas, as process managers</h3>-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<h3>traite des workflows parfois longs</h3>-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<h3>gère la consistance par compensation</h3>-->
+        <!--<img width="700" src="img/saga-compensation.png" alt="compemsation dans les sagas">-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<h3>Availability - Partition tolerance</h3>-->
+        <!--<p>Eventual Consistency</p>-->
+        <!--<p>Event-driven</p>-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<h3>Sagas, as choregraphs</h3>-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<h3>ensemble de handlers d'événements</h3>-->
+        <!--<p>implémenté sous la forme d'une state machine</p>-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<h3>Un <span class="mu">µ</span>S a 2 préoccupations</h3>-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<h3>Gérer son état interne...</h3>-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<h3>...et publier les événements du domaine</h3>-->
+        <!--</section>-->
+        <!--<section data-background="img/winnie-think.gif">-->
+        <!--<h3 style="color: white">Comment faire cela de manière atomique ?</h3>-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<h3>Event Sourcing</h3>-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<h3>persister une suite d'événements</h3>-->
+        <!--<p>plutôt que de mettre à jour un état</p>-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<h3>source de données immutable</h3>-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<h3>devient la source de vérité</h3>-->
+        <!--</section>-->
+        <!--<section>-->
+        <!--<h3>même principe qu'un journal de transactions</h3>-->
+        <!--</section>-->
+        <!--<section data-background="img/mind-the-gap.gif">-->
+        <!--<h3 style="color: white">Attention tout de même...</h3>-->
+        <!--</section>-->
+        <!--</section>-->
+        <section>
+            <section>
+                <h2>Quoi retenir ?</h2>
+            </section>
+            <section>
+                <h3>Pensez d'abord "domaine"</h3>
+                <ul>
+                    <li>son langage</li>
+                    <li>ses contextes</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Pensez "comportements"</h3>
+                <p>plutôt que "data"</p>
+            </section>
+            <section>
+                <h3>Expérimentez le context mapping</h3>
+            </section>
+            <section>
+                <h3>Considérez les architectures event-driven et le messaging</h3>
+            </section>
+            <section>
+                <h3>Essayez les ateliers d'Event Storming</h3>
+            </section>
+            <section>
+                <h3>Faites du monolith-first !</h3>
+                <p>Et passez en <span class="mu">µ</span>S lorsque leurs bornes seront évidentes</p>
+            </section>
+            <section>
+                <h3>Quand vous aurez gagné en maturité sur le sujet...</h3>
+            </section>
+            <section>
+                <h3>...Essayez le Modèle Acteurs</h3>
+                <a href="https://www.infoq.com/news/2013/06/actor-model-ddd">
+                    <img width="550" src="img/actor-model.png" alt="actor model">
+                    https://www.infoq.com/news/2013/06/actor-model-ddd
+                </a>
+            </section>
+        </section>
+        <section>
+            <section>
+                <img src="img/blue-book.png" alt="blue book" height="500">
+            </section>
+            <section>
+                <small>
+                    <ul>
+                        <li>http://www.michaelnygard.com/blog/2017/12/the-entity-service-antipattern/</li>
+                        <li>https://www.simplethread.com/the-distributed-monolith/</li>
+                        <li>http://vladikk.com/2018/01/21/bounded-contexts-vs-microservices/</li>
+                        <li>
+                            https://hackernoon.com/microservices-bounded-context-cohesion-what-do-they-have-in-common-1107b70342b3
+                        </li>
+                        <li>https://www.infoq.com/news/2016/12/microservices-events-ddd</li>
+                        <li>http://henrikeichenhardt.blogspot.fr/2013/06/why-shared-mutable-state-is-root-of-all.html
+                        </li>
+                        <li>
+                            http://blog.christianposta.com/microservices/why-microservices-should-be-event-driven-autonomy-vs-authority/
+                        </li>
+                        <li>https://www.infoq.com/presentations/ddd-microservices-2016</li>
+                        <li>https://www.infoq.com/articles/microservices-aggregates-events-cqrs-part-1-richardson</li>
+                        <li>https://www.infoq.com/articles/microservices-aggregates-events-cqrs-part-2-richardson</li>
+                        <li>
+                            https://blog.coffeeapplied.com/building-uis-in-devops-microservices-environment-part-3-headless-microservices-bounded-contexts-1ade60f2350b
+                        </li>
+                        <li>https://www.infoq.com/articles/ddd-contextmapping</li>
+                        <li>http://robertgreiner.com/2014/08/cap-theorem-revisited/</li>
+                        <li>https://www.infoq.com/news/2013/06/actor-model-ddd</li>
+                    </ul>
+                </small>
+            </section>
+            <section data-background="img/thanks.gif">
+                <a href="https://twitter.com/JeromeAvoustin">
+                    <p style="color:white;">@JeromeAvoustin</p>
+                </a>
+            </section>
+            <section>
+                <img width="800" src="img/jakku-workin.jpg" alt="jakku workin"/>
+                <p></p>
+                <p>Passez nous voir !</p>
+                <p>1ère journée gratuite ! 🎉🎉</p>
+            </section>
+        </section>
+    </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+  // More info about config & dependencies:
+  // - https://github.com/hakimel/reveal.js#configuration
+  // - https://github.com/hakimel/reveal.js#dependencies
+  Reveal.initialize({
+    dependencies: [
+      // {src: 'plugin/markdown/marked.js'},
+      // {src: 'plugin/markdown/markdown.js'},
+      {src: 'plugin/notes/notes.js', async: true},
+      {
+        src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+          hljs.initHighlightingOnLoad();
+        }
+      }
+    ]
+  });
+</script>
+</body>
+</html>
