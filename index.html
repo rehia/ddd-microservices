@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>reveal.js</title>
+    <title>Quelques principes de design à la rescousse des architectures microservices</title>
 
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/sky.css">
@@ -32,33 +32,13 @@
 <div class="reveal">
     <div class="slides">
         <section>
-            <h2 class="fragment strike">Le Domain Driven Design</h2>
-            <h2>à la rescousse des architectures Microservices ?</h2>
-            <p>
-                <a href="https://twitter.com/JeromeAvoustin">@JeromeAvoustin</a>
-            </p>
-        </section>
-        <section>
             <h2>Quelques principes de design</h2>
-            <h2>à la rescousse des architectures Microservices ?</h2>
-            <p>
-                <a href="https://twitter.com/JeromeAvoustin">@JeromeAvoustin</a>
-            </p>
+            <h2>à la rescousse des architectures Microservices</h2>
         </section>
         <section>
-            <section>
-                <img width="800" src="img/saagie.png" alt="saagie"/>
-            </section>
-            <section>
-                <img width="800" src="img/stickers.png" alt="stickers saagie"/>
-            </section>
-            <section>
-                <img width="800" src="img/rehia.png" alt="rehia"/>
-            </section>
-            <section>
-                <img width="800" src="img/jakku-workin.jpg" alt="jakku workin"/>
-                <p>#jakku-workin sur le Slack communautaire</p>
-            </section>
+          <h2>
+            <a href="https://twitter.com/JeromeAvoustin">@JeromeAvoustin</a>
+          </h2>
         </section>
         <section>
             <section>
@@ -80,8 +60,10 @@
                 <h2>Quels avantages ?</h2>
                 <ul>
                     <li>Système plus modulaire</li>
+                    <li>Indépendance dans le déploiement</li>
                     <li>Facilitent le scaling</li>
                     <li>Solutions adaptées à chaque situation</li>
+                    <li>Réecriture partielle possible</li>
                     <li>Équipes autonomes</li>
                 </ul>
             </section>
@@ -587,6 +569,12 @@
                 <h3>Essayez les ateliers d'Event Storming</h3>
             </section>
             <section>
+                <img width="800" src="img/monolith-microservices.jpg" alt="shit-microservices">
+            </section>
+            <section>
+                <img height="600" src="img/jason-gorman.png" alt="loosely coupled systems">
+            </section>
+            <section>
                 <h3>Faites du monolith-first !</h3>
                 <p>Et passez en <span class="mu">µ</span>S lorsque leurs bornes seront évidentes</p>
             </section>
@@ -602,9 +590,9 @@
             </section>
         </section>
         <section>
-            <section>
-                <img src="img/blue-book.png" alt="blue book" height="500">
-            </section>
+            <img src="img/blue-book.png" alt="blue book" height="500">
+        </section>
+        <section>
             <section>
                 <small>
                     <ul>
@@ -643,6 +631,106 @@
                 <p>Passez nous voir !</p>
                 <p>1ère journée gratuite ! 🎉🎉</p>
             </section>
+        </section>
+        <section>
+          <section>
+            <h2>CQRS</h2>
+          </section>
+          <section>
+            <img width="800" src="img/cqrs.png" alt="loosely coupled systems">
+          </section>
+          <section>
+            <img width="800" src="img/cqrs2.png" alt="loosely coupled systems">
+          </section>
+          <section>
+            <img width="800" src="img/cqrs3.png" alt="loosely coupled systems">
+          </section>
+          <section>
+            <img width="800" src="img/cqrs4.png" alt="loosely coupled systems">
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Event Sourcing</h2>
+          </section>
+          <section>
+            <h3>Persistance de l'historique des événements</h3>
+          </section>
+          <section>
+            <h3>Les événements deviennent la source de vérité</h3>
+            <p>pour reconstituer l'état</p>
+          </section>
+          <section>
+            <h3>Source de données immutable</h3>
+            <p> en <i>append only</i></p>
+          </section>
+          <section>
+            <img width="800" src="img/es1.png" alt="loosely coupled systems">
+          </section>
+          <section>
+            <p>Commande <i>"Ajouter une carotte au pot au feu 42"</i></p>
+            <img width="800" src="img/es2.png" alt="loosely coupled systems">
+          </section>
+          <section>
+            <p>Commande <i>"Ajouter une carotte au pot au feu 42"</i></p>
+            <img width="800" src="img/es3.png" alt="loosely coupled systems">
+          </section>
+          <section>
+            <p>Commande <i>"Ajouter 2 choux au pot au feu 42"</i></p>
+            <img width="800" src="img/es4.png" alt="loosely coupled systems">
+          </section>
+          <section>
+            <p>Commande <i>"Ajouter une carotte au pot au feu 42"</i></p>
+            <img width="800" src="img/es5.png" alt="loosely coupled systems">
+          </section>
+          <section>
+            <p>Commande <i>"Retirer une carotte du pot au feu 42"</i></p>
+            <img width="800" src="img/es6.png" alt="loosely coupled systems">
+          </section>
+          <section>
+            <p>Commande <i>"Ajouter une carotte au pot au feu 42"</i></p>
+            <img width="800" src="img/es7.png" alt="loosely coupled systems">
+          </section>
+          <section>
+            <p>Commande <i>"Ajouter 2 choux  au pot au feu 42"</i></p>
+            <img width="800" src="img/es8.png" alt="loosely coupled systems">
+          </section>
+          <section>
+            <p>Commande <i>"Ajouter une carotte au pot au feu 42"</i></p>
+            <img width="800" src="img/es9.png" alt="loosely coupled systems">
+          </section>
+          <section>
+            <p>Commande <i>"Retirer une carotte du pot au feu 42"</i></p>
+            <img width="800" src="img/es10.png" alt="loosely coupled systems">
+          </section>
+          <section>
+            <img width="800" src="img/es11.png" alt="loosely coupled systems">
+          </section>
+          <section>
+            <h3>Testabilité (immutabilité)</h3>
+          </section>
+          <section>
+            <h3>Versioning d'agrégats</h3>
+          </section>
+          <section>
+            <h3>Debugging et reproductibilité</h3>
+          </section>
+          <section>
+            <h3>Rollback facilité</h3>
+            <p>Et non ! pas en supprimant le dernier event !</p>
+          </section>
+          <section>
+            <h3>Traçabilité offerte</h3>
+          </section>
+          <section>
+            <h3>Recomposer des projections à la demande</h3>
+          </section>
+          <section>
+            <img width="800" src="img/es-all-the-things.jpg" alt="loosely coupled systems">
+          </section>
+          <section>
+            <img height="600" src="img/head-door.gif" alt="loosely coupled systems">
+          </section>
         </section>
     </div>
 </div>
