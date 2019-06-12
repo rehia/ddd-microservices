@@ -15,7 +15,7 @@
     <style type="text/css">
         .mu {
             text-transform: lowercase !important;
-            font-family: "HelveticaNeue-Light" !important;
+            font-family: "HelveticaNeue-Light", "Open sans", sans-serif !important;
         }
     </style>
 
@@ -143,7 +143,7 @@
         <!--</section>-->
         <section>
             <section>
-                <h3>Comment assurer une meilleure cohesion de chaque service ?</h3>
+                <h3>Comment assurer une meilleure cohésion de chaque service ?</h3>
             </section>
             <section>
                 <h3>Un <span class="mu">µ</span>S est responsable d'un ensemble de comportements</h3>
@@ -156,7 +156,16 @@
                 <h3 style="color: white">Comment construire ce modèle ?</h3>
             </section>
             <section>
-                <h3>Utiliser le langage des experts du domaine</h3>
+                <h3>Explorer l'espace du problème</h3>
+                <p>et collaborer beaucoup plus avec les experts du domaine métier</p>
+            </section>
+            <section>
+                <h3>Cesser de tout modéliser sous la forme de données</h3>
+                <img src="slides/img/behaviors-data.png" alt="behaviors and data" height="450"/>
+            </section>
+            <section>
+                <h3>S'approprier le langage des experts du domaine</h3>
+                <p>le structurer, le compléter, identifier les nuances...</p>
             </section>
             <section>
                 <img src="slides/img/ubiquitous-language.jpg" alt="ubiquitous language" height="500"/>
@@ -210,28 +219,25 @@
                 <img width="700" src="img/aggregates.png" alt="aggregates">
             </section>
             <section>
+                <h3>Définit les bornes d'une transaction</h3>
+                <p>c'est une unité de consistance transactionnelle</p>
+            </section>
+            <section>
                 <h3>Cluster d'objets</h3>
                 <h3>composé d'entités</h3>
                 <h3>et de value objects</h3>
             </section>
             <section>
-                <h3>Expression du domaine métier</h3>
-                <p>porte le modèle</p>
+                <h3>Garantit la cohérence de l'ensemble</h3>
+                <p>en contrôlant les invariants</p>
             </section>
             <section>
                 <h3>expose une collection de traitements métiers</h3>
                 <p>à travers la racine de l'agrégat</p>
             </section>
             <section>
-                <h3>contrôle les invariants</h3>
-            </section>
-            <section>
-                <h3>peut lever des événements</h3>
-                <p>et l'exposer au reste du système</p>
-            </section>
-            <section>
-                <h3>unité transactionnelle</h3>
-                <p>assure la consistance de l'ensemble</p>
+                <h3>Définit une unité de distribution</h3>
+                <p>les objets liés le reste, et leur cohérence est assurée</p>
             </section>
         </section>
         <section>
@@ -549,27 +555,7 @@
                 <h2>Quoi retenir ?</h2>
             </section>
             <section>
-                <h3>Pensez d'abord "domaine"</h3>
-                <ul>
-                    <li>son langage</li>
-                    <li>ses contextes</li>
-                </ul>
-            </section>
-            <section>
-                <h3>Pensez "comportements"</h3>
-                <p>plutôt que "data"</p>
-            </section>
-            <section>
-                <h3>Expérimentez le context mapping</h3>
-            </section>
-            <section>
-                <h3>Considérez les architectures event-driven et le messaging</h3>
-            </section>
-            <section>
-                <h3>Essayez les ateliers d'Event Storming</h3>
-            </section>
-            <section>
-                <img width="800" src="img/monolith-microservices.jpg" alt="shit-microservices">
+                <h3>Votre capacité à bien faire des <span class="mu">µ</span>S dépend de votre capacité à bien faire des monolithes</h3>
             </section>
             <section>
                 <img height="600" src="img/jason-gorman.png" alt="loosely coupled systems">
@@ -579,6 +565,32 @@
                 <p>Et passez en <span class="mu">µ</span>S lorsque leurs bornes seront évidentes</p>
             </section>
             <section>
+                <img width="800" src="img/monolith-microservices.jpg" alt="shit-microservices">
+            </section>
+            <section>
+                <h3>Sortez de l'espace de la solution,</h3>
+                <h3>et explorez <strong>l'espace du problème</strong></h3>
+            </section>
+            <section>
+                <h3>Essayez les ateliers d'Event Storming</h3>
+            </section>
+            <section>
+                <h3>Soyez clairs et explicites sur le langage utilisé</h3>
+            </section>
+            <section>
+                <h3>Identifiez des contextes bornés candidats</h3>
+            </section>
+            <section>
+                <h3>Pensez <strong>comportements</strong></h3>
+                <p>plutôt que <i>data</i></p>
+            </section>
+            <section>
+                <h3>Expérimentez le context mapping</h3>
+            </section>
+            <section>
+                <h3>Considérez les architectures event-driven et le messaging</h3>
+            </section>
+            <!-- <section>
                 <h3>Quand vous aurez gagné en maturité sur le sujet...</h3>
             </section>
             <section>
@@ -587,7 +599,7 @@
                     <img width="550" src="img/actor-model.png" alt="actor model">
                     https://www.infoq.com/news/2013/06/actor-model-ddd
                 </a>
-            </section>
+            </section> -->
         </section>
         <section>
             <img src="img/blue-book.png" alt="blue book" height="500">
@@ -617,6 +629,7 @@
                         <li><a target="_blank" href="https://www.infoq.com/articles/ddd-contextmapping">https://www.infoq.com/articles/ddd-contextmapping</a></li>
                         <li><a target="_blank" href="http://robertgreiner.com/2014/08/cap-theorem-revisited/">http://robertgreiner.com/2014/08/cap-theorem-revisited/</a></li>
                         <li><a target="_blank" href="https://www.infoq.com/news/2013/06/actor-model-ddd">https://www.infoq.com/news/2013/06/actor-model-ddd</a></li>
+                        <li><a target="_blank" href="https://www.youtube.com/watch?v=_mqn0FfZ2SY">https://www.youtube.com/watch?v=_mqn0FfZ2SY</a></li>
                     </ul>
                 </small>
             </section>
@@ -625,12 +638,12 @@
                     <p style="color:white;">@JeromeAvoustin</p>
                 </a>
             </section>
-            <section>
+            <!-- <section>
                 <img width="800" src="img/jakku-workin.jpg" alt="jakku workin"/>
                 <p></p>
                 <p>Passez nous voir !</p>
                 <p>1ère journée gratuite ! 🎉🎉</p>
-            </section>
+            </section> -->
         </section>
         <section>
           <section>
